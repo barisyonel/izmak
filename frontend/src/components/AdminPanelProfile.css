@@ -1,0 +1,94 @@
+/* Profil Ayarları Kartı */
+.profile-settings-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px 0 rgba(44, 62, 80, 0.10), 0 1.5px 6px 0 rgba(44, 62, 80, 0.08);
+  padding: 36px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 420px;
+  width: 100%;
+  margin: 40px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: fadeInProfile 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes fadeInProfile {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.profile-settings-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a237e;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: none;
+  margin-bottom: 0;
+}
+
+.profile-label {
+  font-weight: 600;
+  color: #3949ab;
+  margin-bottom: 2px;
+  font-size: 1rem;
+}
+
+.profile-input {
+  padding: 10px 14px;
+  border: 1.5px solid #c5cae9;
+  border-radius: 7px;
+  font-size: 1rem;
+  background: #f5f7fa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.profile-input:focus {
+  border-color: #3949ab;
+  box-shadow: 0 0 0 2px #c5cae9;
+  background: #fff;
+}
+
+.profile-btn {
+  margin-top: 10px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #3949ab 0%, #1a237e 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.08);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.profile-btn:hover:not(:disabled) {
+  background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 16px 0 rgba(44, 62, 80, 0.13);
+}
+.profile-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .profile-settings-card {
+    padding: 18px 8px 18px 8px;
+    min-width: 0;
+    max-width: 98vw;
+  }
+  .profile-settings-title {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+} 

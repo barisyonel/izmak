@@ -3,6 +3,7 @@ import axios from 'axios';
 import './components/AdminPanelProfile.css';
 import './components/AdminPanelSections.css';
 import { Helmet } from 'react-helmet-async';
+import { API_ENDPOINTS } from './config';
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ddm7ouuwk/image/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'deneme';
@@ -112,7 +113,7 @@ export default function AdminPanel() {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/products');
+      const res = await axios.get(API_ENDPOINTS.PRODUCTS);
       setProducts(res.data);
     } catch (err) {
       showError('Ürünler yüklenirken hata oluştu');
@@ -123,7 +124,7 @@ export default function AdminPanel() {
 
   const fetchContacts = async () => {
     try {
-      const res = await axios.get('/api/contacts', {
+      const res = await axios.get(API_ENDPOINTS.CONTACTS, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
       setContacts(res.data);
@@ -135,7 +136,7 @@ export default function AdminPanel() {
   const fetchAnalytics = async () => {
     setAnalyticsLoading(true);
     try {
-      const res = await axios.get('/api/analytics/dashboard', {
+      const res = await axios.get(API_ENDPOINTS.ANALYTICS, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
       setAnalytics(res.data);
@@ -150,7 +151,7 @@ export default function AdminPanel() {
   const fetchGallery = async () => {
     setGalleryLoading(true);
     try {
-      const res = await axios.get('/api/gallery');
+      const res = await axios.get(API_ENDPOINTS.GALLERY);
       setGallery(res.data);
     } catch (err) {
       showError('Galeri yüklenirken hata oluştu');
@@ -163,7 +164,7 @@ export default function AdminPanel() {
     setDrawingLoading(true);
     try {
       console.log('Proje çizimleri yükleniyor...');
-      const res = await axios.get('/api/drawings');
+      const res = await axios.get(API_ENDPOINTS.DRAWINGS);
       console.log('Çizimler yüklendi:', res.data);
       setDrawings(res.data);
     } catch (err) {

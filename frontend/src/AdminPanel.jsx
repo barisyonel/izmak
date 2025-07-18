@@ -536,17 +536,21 @@ export default function AdminPanel() {
       {/* Sidebar */}
       <aside className="admin-sidebar" style={{ 
         width: sidebarOpen ? 300 : 0,
-        background: 'var(--metallic-gradient)', 
+        background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%)', 
         padding: sidebarOpen ? '24px 0' : '24px 0',
-        boxShadow: 'none',
-        minWidth: sidebarOpen ? 180 : 0,
+        boxShadow: '2px 0 10px rgba(0,0,0,0.1)',
+        minWidth: sidebarOpen ? 300 : 0,
         transition: 'all 0.3s ease',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
         border: 'none',
         overflow: 'hidden',
-        position: 'relative',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '100vh',
+        zIndex: 1000,
       }}>
         {/* Başlık kaldırıldı, sadece menü */}
         <nav style={{ 
@@ -565,26 +569,40 @@ export default function AdminPanel() {
               onClick={() => setActiveTab(option.key)}
               style={{
                 width: '100%',
-                padding: '13px 18px',
-                backgroundColor: activeTab === option.key ? 'rgba(241,196,15,0.12)' : 'transparent',
-                color: activeTab === option.key ? 'var(--gold-bright)' : '#fff',
+                padding: '16px 24px',
+                backgroundColor: activeTab === option.key ? 'rgba(241,196,15,0.15)' : 'transparent',
+                color: activeTab === option.key ? '#f1c40f' : '#ffffff',
                 border: 'none',
                 textAlign: 'left',
-                fontSize: 15,
-                fontWeight: activeTab === option.key ? 800 : 600,
+                fontSize: 16,
+                fontWeight: activeTab === option.key ? 700 : 500,
                 cursor: 'pointer',
-                transition: 'all 0.2s',
-                borderRadius: 7,
-                boxShadow: 'none',
+                transition: 'all 0.3s ease',
+                borderRadius: 0,
+                boxShadow: activeTab === option.key ? '0 2px 8px rgba(241,196,15,0.2)' : 'none',
                 outline: 'none',
-                letterSpacing: 0.1,
+                letterSpacing: 0.5,
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
                 textOverflow: 'ellipsis',
-                margin: 0,
-                maxWidth: '100%',
-                minHeight: 44,
+                margin: '4px 16px',
+                maxWidth: 'calc(100% - 32px)',
+                minHeight: 48,
                 boxSizing: 'border-box',
+                borderLeft: activeTab === option.key ? '4px solid #f1c40f' : '4px solid transparent',
+                position: 'relative',
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== option.key) {
+                  e.target.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                  e.target.style.transform = 'translateX(4px)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== option.key) {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.transform = 'translateX(0)';
+                }
               }}
             >
               {option.label}
@@ -709,7 +727,7 @@ export default function AdminPanel() {
         flexDirection: 'column', 
         alignItems: 'center', 
         width: '100%',
-        marginLeft: sidebarOpen ? 0 : 0,
+        marginLeft: sidebarOpen ? 300 : 0,
         transition: 'margin-left 0.3s ease',
         minHeight: '100vh',
       }}>

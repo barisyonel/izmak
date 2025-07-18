@@ -195,6 +195,16 @@ export default function AdminPanel() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Mobilde sidebar açıldığında body scroll'u engelle
+  useEffect(() => {
+    if (isMobile && sidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobile, sidebarOpen]);
+
   const uploadImageToCloudinary = async (file) => {
     const data = new FormData();
     data.append('file', file);
@@ -630,16 +640,16 @@ export default function AdminPanel() {
 
       {/* Header with Toggle and Logout */}
       <header style={{
-        position: 'fixed',
+        position: isMobile ? 'fixed' : 'fixed',
         top: 0,
-        left: sidebarOpen ? 300 : 0,
+        left: isMobile ? 0 : (sidebarOpen ? 300 : 0),
         right: 0,
-        height: 70,
+        height: isMobile ? 60 : 70,
         background: 'var(--steel-gradient)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 24px',
+        padding: isMobile ? '0 12px' : '0 24px',
         zIndex: 999,
         transition: 'left 0.3s ease',
         boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
@@ -651,8 +661,8 @@ export default function AdminPanel() {
             background: 'var(--metallic-gradient)',
             border: 'none',
             borderRadius: '50%',
-            width: 45,
-            height: 45,
+            width: isMobile ? 40 : 45,
+            height: isMobile ? 40 : 45,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -660,7 +670,11 @@ export default function AdminPanel() {
             boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
             transition: 'all 0.3s ease',
             color: '#fff',
-            fontSize: 18,
+            fontSize: isMobile ? 16 : 18,
+            position: isMobile ? 'fixed' : 'static',
+            top: isMobile ? 10 : undefined,
+            left: isMobile ? 10 : undefined,
+            zIndex: isMobile ? 2000 : undefined,
           }}
           aria-label={sidebarOpen ? 'Sidebar\'ı kapat' : 'Sidebar\'ı aç'}
         >
@@ -973,7 +987,7 @@ export default function AdminPanel() {
               </div>
             ) : (
               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'flex-start' }}>
-                {filteredProducts.map(p => (
+                {Array.isArray(filteredProducts) && filteredProducts.map(p => (
                   <li key={p._id} style={{ width: 260, border: '1px solid #ccc', borderRadius: 8, padding: 12, background: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 420 }}>
                     <div>
                       <h3 style={{ fontWeight: 700, fontSize: 20, margin: 0, marginBottom: 8 }}>{p.name}</h3>

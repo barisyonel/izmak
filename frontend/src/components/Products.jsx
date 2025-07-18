@@ -26,7 +26,7 @@ export default function Products() {
       <p style={{ textAlign: 'center', color: 'var(--steel-dark)', marginBottom: 32, fontSize: 18 }}>
         Makine yedek parça, kalıp üretimi ve CNC işleme hizmetlerimizi aşağıda inceleyebilirsiniz.
       </p>
-      {products.length === 0 ? (
+      {Array.isArray(products) && products.length === 0 ? (
         <div style={{ textAlign: 'center', color: 'var(--steel-dark)', fontSize: 20, marginTop: 60 }}>Henüz proje eklenmedi.</div>
       ) : (
         <div
@@ -41,7 +41,7 @@ export default function Products() {
             margin: '0 auto',
           }}
         >
-          {products.map(p => (
+          {Array.isArray(products) && products.map(p => (
             <div
               key={p._id}
               className="product-card"

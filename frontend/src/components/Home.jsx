@@ -572,7 +572,7 @@ export default function Home() {
             justifyContent: 'center',
             width: '100%'
           }}>
-            {projects.map(p => (
+            {Array.isArray(projects) && projects.map(p => (
               <div key={p._id} style={{ 
                 width: 'clamp(240px, 80vw, 260px)', 
                 borderRadius: 14, 

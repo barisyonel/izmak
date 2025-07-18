@@ -1467,4 +1467,4 @@ export default function AdminPanel() {
       `}</style>
     </div>
   );
-} 
+}

@@ -34,13 +34,43 @@ self.addEventListener('fetch', event => {
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        return fetch(event.request)
+          .then(response => {
+            // Check if we received a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+            
+            // Clone the response
+            const responseToCache = response.clone();
+            
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+              });
+            
+            return response;
+          })
+          .catch(error => {
+            console.log('Fetch failed:', error);
+            // If both cache and network fail, return a fallback
+            if (event.request.destination === 'document') {
+              return caches.match('/index.html');
+            }
+            // Return a proper error response
+            return new Response('Network error', {
+              status: 503,
+              statusText: 'Service Unavailable'
+            });
+          });
       })
-      .catch(() => {
-        // If both cache and network fail, return a fallback
-        if (event.request.destination === 'document') {
-          return caches.match('/index.html');
-        }
+      .catch(error => {
+        console.log('Cache match failed:', error);
+        // Return a proper error response
+        return new Response('Cache error', {
+          status: 503,
+          statusText: 'Service Unavailable'
+        });
       })
   );
 });

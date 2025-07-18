@@ -22,6 +22,20 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
+        }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
+        }
+      }
     ],
   },
   plugins: [
@@ -33,6 +47,11 @@ module.exports = {
     historyApiFallback: true,
     port: 3001,
     open: true,
+    hot: true,
+    compress: true,
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     proxy: {
       '/api/products': 'http://localhost:5001',
       '/api/login': 'http://localhost:5001',
@@ -42,5 +61,14 @@ module.exports = {
       '/api/drawings': 'http://localhost:5001',
       '/api/analytics': 'http://localhost:5001'
     },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+  },
+  performance: {
+    hints: false,
   },
 }; 

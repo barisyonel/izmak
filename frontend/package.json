@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "postinstall": "echo 'Frontend dependencies installed'"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",

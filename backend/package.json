@@ -8,9 +8,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "build": "echo 'Backend build completed'",
-    "postinstall": "echo 'Backend dependencies installed'"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

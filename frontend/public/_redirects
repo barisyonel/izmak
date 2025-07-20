@@ -1,1 +1,9 @@
-/*    /index.html   200 
+# Netlify redirects
+/*    /index.html   200
+
+# Service Worker ve Manifest için MIME type ayarları
+/sw.js
+  Content-Type: application/javascript
+
+/manifest.json
+  Content-Type: application/json 

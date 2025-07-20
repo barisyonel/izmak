@@ -10,9 +10,17 @@ export default function Gallery() {
     const fetchGallery = async () => {
       try {
         const res = await axios.get('/api/gallery');
-        setGallery(res.data);
+        console.log('Gallery API response:', res.data);
+        // API'den gelen veriyi array olarak kontrol et
+        if (Array.isArray(res.data)) {
+          setGallery(res.data);
+        } else {
+          console.error('Gallery API invalid response format:', res.data);
+          setGallery([]);
+        }
       } catch (err) {
         console.error('Galeri yükleme hatası:', err);
+        setGallery([]);
       } finally {
         setLoading(false);
       }

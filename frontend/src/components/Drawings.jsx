@@ -10,9 +10,17 @@ export default function Drawings() {
     const fetchDrawings = async () => {
       try {
         const res = await axios.get('/api/drawings');
-        setDrawings(res.data);
+        console.log('Drawings API response:', res.data);
+        // API'den gelen veriyi array olarak kontrol et
+        if (Array.isArray(res.data)) {
+          setDrawings(res.data);
+        } else {
+          console.error('Drawings API invalid response format:', res.data);
+          setDrawings([]);
+        }
       } catch (err) {
         console.error('Proje çizimleri yükleme hatası:', err);
+        setDrawings([]);
       } finally {
         setLoading(false);
       }

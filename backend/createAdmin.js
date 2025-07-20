@@ -26,7 +26,7 @@ async function createAdmin() {
     // Admin bilgileri
     const adminData = {
       username: 'admin',
-      password: 'admin123', // Bu şifreyi değiştirin!
+      password: '123456', // Bu şifreyi değiştirin!
       role: 'superadmin'
     };
     

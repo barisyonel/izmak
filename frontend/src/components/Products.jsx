@@ -2,13 +2,32 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { API_ENDPOINTS } from '../config';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+  
   useEffect(() => {
-    axios.get('/api/products').then(res => setProducts(res.data));
+    const fetchProducts = async () => {
+      try {
+        console.log('Frontend fetching products from:', API_ENDPOINTS.PRODUCTS);
+        const res = await axios.get(API_ENDPOINTS.PRODUCTS);
+        console.log('Frontend products response:', res.data);
+        setProducts(res.data);
+      } catch (err) {
+        console.error('Frontend products fetch error:', err);
+        setError('Ürünler yüklenirken hata oluştu');
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchProducts();
   }, []);
+  
   return (
     <div style={{ maxWidth: 1100, margin: '40px auto', fontFamily: 'Inter, sans-serif' }}>
       <Helmet>
@@ -22,12 +41,31 @@ export default function Products() {
         <meta property="og:site_name" content="IZMAK" />
         <meta property="og:locale" content="tr_TR" />
       </Helmet>
+      
       <h1 style={{ textAlign: 'center', marginBottom: 8, color: 'var(--chrome-primary)' }}>Üretim Alanlarımız</h1>
       <p style={{ textAlign: 'center', color: 'var(--steel-dark)', marginBottom: 32, fontSize: 18 }}>
         Makine yedek parça, kalıp üretimi ve CNC işleme hizmetlerimizi aşağıda inceleyebilirsiniz.
       </p>
-      {Array.isArray(products) && products.length === 0 ? (
-        <div style={{ textAlign: 'center', color: 'var(--steel-dark)', fontSize: 20, marginTop: 60 }}>Henüz proje eklenmedi.</div>
+      
+      {/* Debug Info */}
+      <div style={{ marginBottom: 20, padding: 10, background: '#f0f0f0', borderRadius: 6, textAlign: 'center' }}>
+        <p><strong>Debug:</strong> Loading: {loading.toString()}</p>
+        <p><strong>Products Count:</strong> {products.length}</p>
+        <p><strong>Error:</strong> {error || 'None'}</p>
+      </div>
+      
+      {loading ? (
+        <div style={{ textAlign: 'center', color: 'var(--steel-dark)', fontSize: 20, marginTop: 60 }}>
+          Ürünler yükleniyor...
+        </div>
+      ) : error ? (
+        <div style={{ textAlign: 'center', color: '#e74c3c', fontSize: 20, marginTop: 60 }}>
+          {error}
+        </div>
+      ) : Array.isArray(products) && products.length === 0 ? (
+        <div style={{ textAlign: 'center', color: 'var(--steel-dark)', fontSize: 20, marginTop: 60 }}>
+          Henüz ürün eklenmedi.
+        </div>
       ) : (
         <div
           className="product-grid"

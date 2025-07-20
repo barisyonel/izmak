@@ -11,6 +11,8 @@ export const API_ENDPOINTS = {
   DRAWINGS: `${API_BASE_URL}/api/drawings`,
   ANALYTICS: `${API_BASE_URL}/api/analytics/dashboard`,
   BANNER: `${API_BASE_URL}/api/banner`,
+  ADMIN_PASSWORD: `${API_BASE_URL}/api/admin/password`,
+  ADMIN_USERNAME: `${API_BASE_URL}/api/admin/username`,
 };
 
 export default API_BASE_URL; 

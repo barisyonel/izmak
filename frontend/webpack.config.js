@@ -47,25 +47,25 @@ module.exports = {
     historyApiFallback: true,
     port: 3001,
     open: true,
-    hot: true,
-    compress: true,
+    hot: false,
+    liveReload: false,
     static: {
       directory: path.join(__dirname, 'public'),
     },
-    proxy: {
-      '/api/products': 'http://localhost:5001',
-      '/api/login': 'http://localhost:5001',
-      '/api/banner': 'http://localhost:5001',
-      '/api/contacts': 'http://localhost:5001',
-      '/api/gallery': 'http://localhost:5001',
-      '/api/drawings': 'http://localhost:5001',
-      '/api/analytics': 'http://localhost:5001'
-    },
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false
+      }
+    ],
     client: {
       overlay: {
         errors: true,
         warnings: false,
       },
+      logging: 'none',
     },
   },
   performance: {

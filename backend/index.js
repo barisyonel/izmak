@@ -117,7 +117,10 @@ const rateLimiter = (req, res, next) => {
   next();
 };
 
-app.use(rateLimiter);
+// Rate limiting'i development ortamında devre dışı bırak
+if (process.env.NODE_ENV !== 'development') {
+  app.use(rateLimiter);
+}
 
 // Brute-force koruması için giriş deneme limiti
 const loginAttempts = {};
@@ -252,7 +255,7 @@ apiRouter.post('/login', checkLoginAttempts, async (req, res) => {
 });
 
 // Şifre değiştirme endpoint'i (sadece adminler)
-apiRouter.post('/admin/change-password', authenticateToken, async (req, res) => {
+apiRouter.patch('/admin/password', authenticateToken, async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
     if (!oldPassword || !newPassword || newPassword.length < 6) {
@@ -276,7 +279,7 @@ apiRouter.post('/admin/change-password', authenticateToken, async (req, res) => 
 });
 
 // Kullanıcı adı değiştirme endpoint'i (sadece kendi hesabı için)
-apiRouter.post('/admin/change-username', authenticateToken, async (req, res) => {
+apiRouter.patch('/admin/username', authenticateToken, async (req, res) => {
   try {
     const { newUsername, password } = req.body;
     if (!newUsername || newUsername.length < 3) {
@@ -316,15 +319,42 @@ apiRouter.get('/products', async (req, res) => {
   }
 });
 
+// Tekil ürün getir (herkese açık)
+apiRouter.get('/products/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Geçersiz ürün ID\'si' });
+    }
+    
+    const product = await Product.findById(id);
+    
+    if (!product) {
+      return res.status(404).json({ message: 'Ürün bulunamadı' });
+    }
+    
+    res.json(product);
+  } catch (error) {
+    console.error('Ürün getirme hatası:', error);
+    res.status(500).json({ message: 'Sunucu hatası' });
+  }
+});
+
 // Ürün ekle (sadece admin)
 apiRouter.post('/products', authenticateToken, validateProduct, async (req, res) => {
   try {
     const { name, description, imageUrl, price } = req.body;
+    console.log('Product creation request:', { name, description, imageUrl, price });
+    
     const product = new Product({ name, description, imageUrl, price });
     await product.save();
+    
+    console.log('Product created successfully:', product);
     res.status(201).json(product);
   } catch (error) {
-    res.status(500).json({ message: 'Sunucu hatası' });
+    console.error('Product creation error:', error);
+    res.status(500).json({ message: 'Sunucu hatası: ' + error.message });
   }
 });
 
@@ -334,7 +364,10 @@ apiRouter.put('/products/:id', authenticateToken, validateProduct, async (req, r
     const { id } = req.params;
     const { name, description, imageUrl, price } = req.body;
     
+    console.log('Product update request:', { id, name, description, imageUrl, price });
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
+      console.log('Invalid product ID:', id);
       return res.status(400).json({ message: 'Geçersiz ürün ID\'si' });
     }
     
@@ -345,13 +378,15 @@ apiRouter.put('/products/:id', authenticateToken, validateProduct, async (req, r
     );
     
     if (!updated) {
+      console.log('Product not found:', id);
       return res.status(404).json({ message: 'Ürün bulunamadı' });
     }
     
+    console.log('Product updated successfully:', updated);
     res.json(updated);
   } catch (error) {
     console.error('Ürün güncelleme hatası:', error);
-    res.status(500).json({ message: 'Sunucu hatası' });
+    res.status(500).json({ message: 'Sunucu hatası: ' + error.message });
   }
 });
 
@@ -359,10 +394,19 @@ apiRouter.put('/products/:id', authenticateToken, validateProduct, async (req, r
 apiRouter.delete('/products/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    await Product.findByIdAndDelete(id);
+    console.log('Product deletion request:', id);
+    
+    const deleted = await Product.findByIdAndDelete(id);
+    if (!deleted) {
+      console.log('Product not found for deletion:', id);
+      return res.status(404).json({ message: 'Ürün bulunamadı' });
+    }
+    
+    console.log('Product deleted successfully:', id);
     res.status(204).end();
   } catch (error) {
-    res.status(500).json({ message: 'Sunucu hatası' });
+    console.error('Product deletion error:', error);
+    res.status(500).json({ message: 'Sunucu hatası: ' + error.message });
   }
 });
 
@@ -657,7 +701,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/urun-yonetimi';
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

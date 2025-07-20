@@ -9,7 +9,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
 import Drawings from './components/Drawings';
-import AdminPanel from './AdminPanel';
+import AdminPanel from './components/admin/AdminPanel';
 import Login from './Login';
 import ProductDetail from './components/ProductDetail';
 import WhatsAppButton from './components/WhatsAppButton';

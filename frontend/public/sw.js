@@ -1,4 +1,4 @@
-const CACHE_NAME = 'izmak-v1';
+const CACHE_NAME = 'izmak-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -12,7 +12,6 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
-        // Only cache files that exist, skip non-existent ones
         return Promise.allSettled(
           urlsToCache.map(url => 
             cache.add(url).catch(err => {
@@ -27,6 +26,16 @@ self.addEventListener('install', event => {
 
 // Fetch event
 self.addEventListener('fetch', event => {
+  // Skip API requests and let them go directly to network
+  if (event.request.url.includes('/api/')) {
+    return;
+  }
+  
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -41,13 +50,19 @@ self.addEventListener('fetch', event => {
               return response;
             }
             
-            // Clone the response
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
+            // Only cache static assets, not API responses
+            if (event.request.destination === 'document' || 
+                event.request.destination === 'script' || 
+                event.request.destination === 'style' ||
+                event.request.destination === 'image') {
+              // Clone the response
+              const responseToCache = response.clone();
+              
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+            }
             
             return response;
           })

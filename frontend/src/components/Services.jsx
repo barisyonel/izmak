@@ -43,17 +43,17 @@ export default function Services() {
             </p>
           </div>
 
-          <div style={{ 
+          <div className="services-grid" style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '40px',
+            gridTemplateColumns: 'repeat(4, 1fr)', 
+            gap: '30px',
             marginBottom: '80px'
           }}>
             {/* Makine Yedek Parça */}
             <div style={{ 
               background: '#fff', 
               borderRadius: '20px', 
-              padding: '40px 30px', 
+              padding: '30px 20px', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
               transition: 'all 0.3s ease',
               border: '1px solid #e1e8ed'
@@ -100,7 +100,7 @@ export default function Services() {
             <div style={{ 
               background: '#fff', 
               borderRadius: '20px', 
-              padding: '40px 30px', 
+              padding: '30px 20px', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
               transition: 'all 0.3s ease',
               border: '1px solid #e1e8ed'
@@ -147,7 +147,7 @@ export default function Services() {
             <div style={{ 
               background: '#fff', 
               borderRadius: '20px', 
-              padding: '40px 30px', 
+              padding: '30px 20px', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
               transition: 'all 0.3s ease',
               border: '1px solid #e1e8ed'
@@ -194,7 +194,7 @@ export default function Services() {
             <div style={{ 
               background: '#fff', 
               borderRadius: '20px', 
-              padding: '40px 30px', 
+              padding: '30px 20px', 
               boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
               transition: 'all 0.3s ease',
               border: '1px solid #e1e8ed'
@@ -306,6 +306,23 @@ export default function Services() {
           </div>
         </div>
       </div>
+      
+      {/* Responsive CSS */}
+      <style>{`
+        @media (max-width: 1200px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 25px !important;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

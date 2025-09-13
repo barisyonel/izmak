@@ -49,7 +49,7 @@ export default function Footer() {
           <div className="contact-info">
             <div className="contact-item">
               <i className="fas fa-map-marker-alt"></i>
-              <span>Organize Sanayi Bölgesi, 1. Cadde No: 15, İstanbul</span>
+              <span>722/5 Sk No:2, Buca, İzmir</span>
             </div>
             <div className="contact-item">
               <i className="fas fa-phone"></i>

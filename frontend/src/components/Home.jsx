@@ -5,8 +5,40 @@ import { Helmet } from 'react-helmet-async';
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
-    axios.get('/api/products').then(res => setProjects(res.data.slice(0, 3)));
+    // Static veri ile çalış
+    const staticProjects = [
+      {
+        _id: '1',
+        name: 'CNC İşleme Merkezi',
+        description: '5 eksenli CNC işleme merkezi ile hassas parça üretimi',
+        imageUrl: '/cnc.jpeg',
+        price: 15000
+      },
+      {
+        _id: '2', 
+        name: 'Plastik Enjeksiyon Kalıbı',
+        description: 'Seri üretim için özel tasarım plastik enjeksiyon kalıbı',
+        imageUrl: '/cncc.jpg',
+        price: 25000
+      },
+      {
+        _id: '3',
+        name: 'Makine Yedek Parça',
+        description: 'Endüstriyel makineler için hassas yedek parça imalatı',
+        imageUrl: '/logo.png',
+        price: 5000
+      }
+    ];
+    
+    setLoading(true);
+    setTimeout(() => {
+      setProjects(staticProjects);
+      setLoading(false);
+    }, 1000);
   }, []);
   return (
     <div style={{ 
@@ -555,7 +587,25 @@ export default function Home() {
             Öne Çıkan Projelerimiz
           </h2>
         </div>
-        {projects.length === 0 ? (
+        {loading ? (
+          <div style={{ 
+            textAlign: 'center', 
+            color: 'var(--steel-dark)', 
+            fontSize: 'clamp(16px, 4vw, 20px)', 
+            marginTop: 40 
+          }}>
+            Projeler yükleniyor...
+          </div>
+        ) : error ? (
+          <div style={{ 
+            textAlign: 'center', 
+            color: '#e74c3c', 
+            fontSize: 'clamp(16px, 4vw, 20px)', 
+            marginTop: 40 
+          }}>
+            {error}
+          </div>
+        ) : projects.length === 0 ? (
           <div style={{ 
             textAlign: 'center', 
             color: 'var(--steel-dark)', 

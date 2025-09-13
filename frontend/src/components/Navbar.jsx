@@ -4,14 +4,8 @@ import './NavbarDropdown.css';
 import logo from '../logo.png';
 
 export default function Navbar() {
-  const isAdmin = !!localStorage.getItem('token');
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
   
   const closeMenu = () => setMenuOpen(false);
 
@@ -175,62 +169,6 @@ export default function Navbar() {
           </NavLink>
         </div>
         
-        {/* Sağ: Giriş/Panel/Çıkış Butonları */}
-        <div style={{ 
-          display: 'flex', 
-          gap: 'clamp(8px, 2vw, 16px)', 
-          alignItems: 'center', 
-          minWidth: 'fit-content', 
-          position: 'absolute', 
-          right: 'clamp(16px, 3vw, 32px)', 
-          top: 0, 
-          height: '100%', 
-          justifyContent: 'flex-end', 
-          flex: '0 0 auto' 
-        }}>
-          {isAdmin ? (
-            <>
-              <button 
-                onClick={() => navigate('/admin')} 
-                className="navbar-panel-btn"
-                style={{
-                  background: 'var(--gold-gradient)',
-                  color: 'var(--chrome-primary)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: 'clamp(8px, 2vw, 10px) clamp(16px, 3vw, 22px)',
-                  cursor: 'pointer',
-                  fontWeight: 700,
-                  fontSize: 'clamp(14px, 2vw, 16px)',
-                  transition: 'all 0.3s ease',
-                  whiteSpace: 'nowrap',
-                  boxShadow: '0 2px 8px #f1c40f44'
-                }}
-              >
-                Panel
-              </button>
-              <button 
-                onClick={handleLogout} 
-                className="navbar-logout-btn"
-                style={{
-                  background: 'var(--gold-gradient)',
-                  color: 'var(--chrome-primary)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: 'clamp(8px, 2vw, 10px) clamp(16px, 3vw, 22px)',
-                  cursor: 'pointer',
-                  fontWeight: 700,
-                  fontSize: 'clamp(14px, 2vw, 16px)',
-                  transition: 'all 0.3s ease',
-                  whiteSpace: 'nowrap',
-                  boxShadow: '0 2px 8px #f1c40f44'
-                }}
-              >
-                Çıkış
-              </button>
-            </>
-          ) : null}
-        </div>
         
         {/* Mobil Hamburger */}
         <button 
@@ -350,42 +288,6 @@ export default function Navbar() {
           >
             İletişim
           </NavLink>
-          {isAdmin && (
-            <NavLink 
-              to="/admin" 
-              onClick={closeMenu} 
-              style={({ isActive }) => ({ 
-                color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
-                textDecoration: 'none', 
-                fontWeight: 'bold', 
-                fontSize: 'clamp(15px, 3.5vw, 18px)',
-                padding: '12px 0',
-                borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
-              })}
-            >
-              Panel
-            </NavLink>
-          )}
-          {isAdmin && (
-            <button 
-              onClick={() => { handleLogout(); closeMenu(); }} 
-              style={{ 
-                background: 'var(--gold-gradient)', 
-                color: 'var(--chrome-primary)', 
-                border: 'none', 
-                borderRadius: '10px', 
-                padding: 'clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 22px)', 
-                cursor: 'pointer', 
-                fontWeight: 'bold', 
-                fontSize: 'clamp(14px, 3vw, 16px)', 
-                marginTop: 'clamp(8px, 2vw, 8px)',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 2px 8px #f1c40f44'
-              }}
-            >
-              Çıkış
-            </button>
-          )}
         </div>
       )}
       
@@ -412,9 +314,6 @@ export default function Navbar() {
           }
           .navbar-hamburger { 
             display: block !important; 
-          }
-          .navbar-panel-btn, .navbar-logout-btn {
-            display: none !important;
           }
           .navbar-mobile-menu {
             position: absolute !important;

@@ -55,9 +55,9 @@ module.exports = {
     proxy: [
       {
         context: ['/api'],
-        target: 'http://localhost:3001',
+        target: 'https://izmak-production.up.railway.app',
         changeOrigin: true,
-        secure: false
+        secure: true
       }
     ],
     client: {

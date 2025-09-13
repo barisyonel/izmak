@@ -47,12 +47,6 @@ export default function Products() {
         Makine yedek parça, kalıp üretimi ve CNC işleme hizmetlerimizi aşağıda inceleyebilirsiniz.
       </p>
       
-      {/* Debug Info */}
-      <div style={{ marginBottom: 20, padding: 10, background: '#f0f0f0', borderRadius: 6, textAlign: 'center' }}>
-        <p><strong>Debug:</strong> Loading: {loading.toString()}</p>
-        <p><strong>Products Count:</strong> {products.length}</p>
-        <p><strong>Error:</strong> {error || 'None'}</p>
-      </div>
       
       {loading ? (
         <div style={{ textAlign: 'center', color: 'var(--steel-dark)', fontSize: 20, marginTop: 60 }}>

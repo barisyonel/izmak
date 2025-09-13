@@ -6,7 +6,6 @@ import Products from './Products';
 import AddProduct from './AddProduct';
 import Gallery from './Gallery';
 import Drawings from './Drawings';
-import Contacts from './Contacts';
 import Profile from './Profile';
 
 export default function AdminPanel() {
@@ -24,8 +23,6 @@ export default function AdminPanel() {
         return <Gallery />;
       case 'drawings':
         return <Drawings />;
-      case 'contacts':
-        return <Contacts />;
       case 'profile':
         return <Profile />;
       default:

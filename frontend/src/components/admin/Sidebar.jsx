@@ -6,7 +6,6 @@ const MENU_OPTIONS = [
   { key: 'add', label: 'Ürün Ekle', icon: '➕' },
   { key: 'gallery', label: 'Galeri', icon: '🖼️' },
   { key: 'drawings', label: 'Proje Çizimleri', icon: '📐' },
-  { key: 'contacts', label: 'İletişim Talepleri', icon: '📞' },
   { key: 'profile', label: 'Profil', icon: '👤' },
 ];
 

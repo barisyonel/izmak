@@ -107,9 +107,9 @@ export default function Navbar() {
           <div className="navbar-dropdown">
             <span className="navbar-dropdown-label">Hizmetlerimiz</span>
             <div className="navbar-dropdown-menu">
-              <NavLink to="/products" onClick={closeMenu} className="navbar-dropdown-item">Makine Yedek Parça</NavLink>
-              <NavLink to="/products" onClick={closeMenu} className="navbar-dropdown-item">Kalıp İmalatı</NavLink>
-              <NavLink to="/products" onClick={closeMenu} className="navbar-dropdown-item">Özel Tasarım</NavLink>
+              <NavLink to="/services" onClick={closeMenu} className="navbar-dropdown-item">Makine Yedek Parça</NavLink>
+              <NavLink to="/services" onClick={closeMenu} className="navbar-dropdown-item">Kalıp İmalatı</NavLink>
+              <NavLink to="/services" onClick={closeMenu} className="navbar-dropdown-item">Özel Tasarım</NavLink>
               <a href="tel:+905321347819" className="navbar-dropdown-item">Teknik Destek</a>
             </div>
           </div>

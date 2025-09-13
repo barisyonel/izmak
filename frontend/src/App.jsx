@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Products from './components/Products';
+import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/drawings" element={<Drawings />} />
           <Route path="/about" element={<About />} />

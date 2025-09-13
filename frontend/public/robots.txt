@@ -2,11 +2,28 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://izmak.com/sitemap.xml
+Sitemap: https://izmirmakinakalip.com/sitemap.xml
 
 # Disallow admin and login pages
 Disallow: /admin
 Disallow: /login
+Disallow: /api/
 
 # Allow all other pages
-Allow: / 
+Allow: /
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2 

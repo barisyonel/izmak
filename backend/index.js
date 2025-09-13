@@ -17,6 +17,8 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: [
+    'https://izmirmakinakalip.com',
+    'https://www.izmirmakinakalip.com',
     'https://izmak.netlify.app',
     'http://localhost:3001',
     'http://localhost:3000'
@@ -27,6 +29,28 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
+
+// Security Headers Middleware
+app.use((req, res, next) => {
+  // HTTPS Redirect
+  if (process.env.NODE_ENV === 'production' && req.header('x-forwarded-proto') !== 'https') {
+    res.redirect(`https://${req.header('host')}${req.url}`);
+    return;
+  }
+  
+  // Security Headers
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  
+  if (process.env.NODE_ENV === 'production') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+  
+  next();
+});
 
 // Production için static files serve et
 if (process.env.NODE_ENV === 'production') {

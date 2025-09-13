@@ -1,3 +1,7 @@
+# HTTP to HTTPS Redirects
+http://izmirmakinakalip.com/* https://izmirmakinakalip.com/:splat 301!
+http://www.izmirmakinakalip.com/* https://izmirmakinakalip.com/:splat 301!
+
 # Netlify redirects
 /*    /index.html   200
 

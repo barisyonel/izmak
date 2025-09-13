@@ -36,19 +36,21 @@ export default function Home() {
       width: '100%'
     }}>
       <Helmet>
-        <title>IZMAK - Makine Yedek Parça & Kalıp İmalatı | 1960'dan Beri</title>
-        <meta name="description" content="IZMAK, 1960'tan beri makine yedek parça imalatı, plastik enjeksiyon kalıpları, kesme sıvama kalıpları, torna işleri ve CNC işleme merkezi hizmetlerinde uzmanlaşmıştır." />
-        <meta property="og:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı" />
-        <meta property="og:description" content="1960'tan beri makine yedek parça imalatı, kalıp üretimi ve CNC işleme sektöründe uzmanlaşmış IZMAK" />
+        <title>IZMAK - Makine Yedek Parça & Kalıp İmalatı | 1960'dan Beri | İzmir</title>
+        <meta name="description" content="IZMAK, 1960'tan beri makine yedek parça imalatı, plastik enjeksiyon kalıpları, kesme sıvama kalıpları, torna işleri ve CNC işleme merkezi hizmetlerinde uzmanlaşmıştır. Buca, İzmir'de hizmet veriyoruz." />
+        <meta name="keywords" content="makine yedek parça, kalıp imalatı, CNC işleme, plastik enjeksiyon kalıbı, kesme sıvama kalıbı, torna işleri, İzmir, Buca, endüstriyel parça, özel imalat" />
+        <meta property="og:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı | İzmir" />
+        <meta property="og:description" content="1960'tan beri makine yedek parça imalatı, kalıp üretimi ve CNC işleme sektöründe uzmanlaşmış IZMAK. Buca, İzmir'de hizmet veriyoruz." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://izmak.com" />
-        <meta property="og:image" content="/logo.png" />
+        <meta property="og:image" content="https://izmak.com/logo.png" />
         <meta property="og:site_name" content="IZMAK" />
         <meta property="og:locale" content="tr_TR" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı" />
+        <meta name="twitter:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı | İzmir" />
         <meta name="twitter:description" content="1960'tan beri makine yedek parça imalatı, kalıp üretimi ve CNC işleme sektöründe uzmanlaşmış IZMAK" />
-        <meta name="twitter:image" content="/logo.png" />
+        <meta name="twitter:image" content="https://izmak.com/logo.png" />
+        <link rel="canonical" href="https://izmak.com" />
       </Helmet>
       {/* HERO Alanı */}
       <section style={{

@@ -9,36 +9,23 @@ export default function Home() {
   const [error, setError] = useState(null);
   
   useEffect(() => {
-    // Static veri ile çalış
-    const staticProjects = [
-      {
-        _id: '1',
-        name: 'CNC İşleme Merkezi',
-        description: '5 eksenli CNC işleme merkezi ile hassas parça üretimi',
-        imageUrl: '/cnc.jpeg',
-        price: 15000
-      },
-      {
-        _id: '2', 
-        name: 'Plastik Enjeksiyon Kalıbı',
-        description: 'Seri üretim için özel tasarım plastik enjeksiyon kalıbı',
-        imageUrl: '/cncc.jpg',
-        price: 25000
-      },
-      {
-        _id: '3',
-        name: 'Makine Yedek Parça',
-        description: 'Endüstriyel makineler için hassas yedek parça imalatı',
-        imageUrl: '/logo.png',
-        price: 5000
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get('/api/products');
+        setProjects(res.data.slice(0, 3));
+        setError(null);
+      } catch (err) {
+        console.log('API hatası:', err.message);
+        setError('Projeler yüklenirken bir hata oluştu');
+        // Backend çalışmadığında boş array göster
+        setProjects([]);
+      } finally {
+        setLoading(false);
       }
-    ];
+    };
     
-    setLoading(true);
-    setTimeout(() => {
-      setProjects(staticProjects);
-      setLoading(false);
-    }, 1000);
+    fetchProjects();
   }, []);
   return (
     <div style={{ 

@@ -33,22 +33,28 @@ export default function AddProduct() {
     }
 
     try {
+      console.log('Starting image upload...');
       const imageUrl = await uploadImageToCloudinary(imageFile);
-      await axios.post(API_ENDPOINTS.PRODUCTS, {
+      console.log('Image uploaded successfully:', imageUrl);
+      
+      console.log('Sending product data:', { name, description, imageUrl });
+      const response = await axios.post(API_ENDPOINTS.PRODUCTS, {
         name,
         description,
         imageUrl
       }, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
-
+      
+      console.log('Product created successfully:', response.data);
       alert('Ürün başarıyla eklendi!');
       setName('');
       setDescription('');
       setImageFile(null);
     } catch (err) {
       console.error('Add product error:', err);
-      alert('Ürün eklenirken hata oluştu');
+      console.error('Error details:', err.response?.data);
+      alert('Ürün eklenirken hata oluştu: ' + (err.response?.data?.message || err.message));
     }
   };
 

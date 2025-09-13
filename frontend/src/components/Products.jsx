@@ -116,7 +116,6 @@ export default function Products() {
               <div style={{ flex: '1 1 auto', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <h3 style={{ margin: '8px 0 4px', fontSize: 20, color: 'var(--chrome-primary)', fontWeight: 600 }}>{p.name}</h3>
                 <p style={{ fontSize: 15, color: 'var(--steel-dark)', textAlign: 'center', lineHeight: 1.5 }}>{p.description}</p>
-                <div style={{ fontWeight: 'bold', color: 'var(--gold-accent)', fontSize: 18, marginTop: 8 }}>{p.price ? p.price + ' TL' : ''}</div>
               </div>
             </div>
           ))}

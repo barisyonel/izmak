@@ -8,7 +8,6 @@ const CLOUDINARY_UPLOAD_PRESET = 'deneme';
 export default function AddProduct() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -28,7 +27,7 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !description || !imageFile || !price) {
+    if (!name || !description || !imageFile) {
       alert('Tüm alanları doldurun');
       return;
     }
@@ -38,8 +37,7 @@ export default function AddProduct() {
       await axios.post(API_ENDPOINTS.PRODUCTS, {
         name,
         description,
-        imageUrl,
-        price: Number(price)
+        imageUrl
       }, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
@@ -47,7 +45,6 @@ export default function AddProduct() {
       alert('Ürün başarıyla eklendi!');
       setName('');
       setDescription('');
-      setPrice('');
       setImageFile(null);
     } catch (err) {
       console.error('Add product error:', err);
@@ -127,32 +124,6 @@ export default function AddProduct() {
           />
         </div>
 
-        <div style={{ marginBottom: '24px' }}>
-          <label style={{ 
-            display: 'block', 
-            marginBottom: '8px', 
-            fontWeight: '600', 
-            color: '#2c3e50',
-            fontSize: '16px'
-          }}>
-            Fiyat (₺)
-          </label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="Fiyat girin"
-            style={{
-              width: '100%',
-              padding: '16px',
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              fontSize: '16px',
-              boxSizing: 'border-box'
-            }}
-            required
-          />
-        </div>
 
         <div style={{ marginBottom: '32px' }}>
           <label style={{ 

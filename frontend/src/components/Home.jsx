@@ -656,14 +656,6 @@ export default function Home() {
                 }}>
                   {p.description}
                 </p>
-                <div style={{ 
-                  fontWeight: 'bold', 
-                  color: 'var(--gold-accent)', 
-                  fontSize: 'clamp(16px, 3vw, 18px)', 
-                  marginTop: 8 
-                }}>
-                  {p.price ? p.price + ' TL' : ''}
-                </div>
               </div>
             ))}
           </div>

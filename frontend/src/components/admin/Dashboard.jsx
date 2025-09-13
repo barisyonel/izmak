@@ -102,19 +102,6 @@ export default function Dashboard() {
             <div style={{ fontSize: '18px', opacity: '0.9' }}>Son 30 Gün</div>
           </div>
 
-          <div style={{ 
-            background: 'linear-gradient(135deg, #27ae60 0%, #229954 100%)',
-            padding: '30px',
-            borderRadius: '12px',
-            color: '#fff',
-            textAlign: 'center',
-            boxShadow: '0 4px 15px rgba(39,174,96,0.3)'
-          }}>
-            <div style={{ fontSize: '48px', fontWeight: '700', marginBottom: '12px' }}>
-              {Math.round(analytics.avgPrice)} ₺
-            </div>
-            <div style={{ fontSize: '18px', opacity: '0.9' }}>Ortalama Fiyat</div>
-          </div>
         </div>
       ) : (
         <div style={{ 

@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Input Validation Middleware
 const validateProduct = (req, res, next) => {
-  const { name, description, imageUrl, price } = req.body;
+  const { name, description, imageUrl } = req.body;
   
   if (!name || name.trim().length < 3) {
     return res.status(400).json({ message: 'Ürün adı en az 3 karakter olmalıdır' });
@@ -47,10 +47,6 @@ const validateProduct = (req, res, next) => {
   
   if (!imageUrl || !imageUrl.startsWith('http')) {
     return res.status(400).json({ message: 'Geçerli bir resim URL\'i gerekli' });
-  }
-  
-  if (!price || isNaN(price) || price <= 0) {
-    return res.status(400).json({ message: 'Geçerli bir fiyat gerekli' });
   }
   
   next();
@@ -150,8 +146,7 @@ const Admin = mongoose.model('Admin', adminSchema);
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  imageUrl: { type: String, required: true },
-  price: { type: Number, required: true }
+  imageUrl: { type: String, required: true }
 });
 const Product = mongoose.model('Product', productSchema);
 
@@ -344,10 +339,10 @@ apiRouter.get('/products/:id', async (req, res) => {
 // Ürün ekle (sadece admin)
 apiRouter.post('/products', authenticateToken, validateProduct, async (req, res) => {
   try {
-    const { name, description, imageUrl, price } = req.body;
-    console.log('Product creation request:', { name, description, imageUrl, price });
+    const { name, description, imageUrl } = req.body;
+    console.log('Product creation request:', { name, description, imageUrl });
     
-    const product = new Product({ name, description, imageUrl, price });
+    const product = new Product({ name, description, imageUrl });
     await product.save();
     
     console.log('Product created successfully:', product);
@@ -362,9 +357,9 @@ apiRouter.post('/products', authenticateToken, validateProduct, async (req, res)
 apiRouter.put('/products/:id', authenticateToken, validateProduct, async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, imageUrl, price } = req.body;
+    const { name, description, imageUrl } = req.body;
     
-    console.log('Product update request:', { id, name, description, imageUrl, price });
+    console.log('Product update request:', { id, name, description, imageUrl });
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
       console.log('Invalid product ID:', id);
@@ -373,7 +368,7 @@ apiRouter.put('/products/:id', authenticateToken, validateProduct, async (req, r
     
     const updated = await Product.findByIdAndUpdate(
       id,
-      { name, description, imageUrl, price },
+      { name, description, imageUrl },
       { new: true, runValidators: true }
     );
     
@@ -581,24 +576,12 @@ apiRouter.get('/analytics/dashboard', authenticateToken, async (req, res) => {
       createdAt: { $gte: thirtyDaysAgo }
     });
     
-    // Fiyat ortalaması
-    const avgPrice = await Product.aggregate([
-      { $group: { _id: null, avgPrice: { $avg: '$price' } } }
-    ]);
-    
-    // En yüksek fiyatlı ürün
-    const mostExpensive = await Product.findOne().sort({ price: -1 });
-    
-    // En düşük fiyatlı ürün
-    const leastExpensive = await Product.findOne().sort({ price: 1 });
+    // Fiyat bilgileri kaldırıldı
     
     res.json({
       totalProducts,
       totalContacts,
-      recentContacts,
-      avgPrice: avgPrice[0]?.avgPrice || 0,
-      mostExpensive: mostExpensive?.price || 0,
-      leastExpensive: leastExpensive?.price || 0
+      recentContacts
     });
   } catch (error) {
     console.error('Analytics error:', error);

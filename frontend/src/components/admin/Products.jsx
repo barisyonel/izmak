@@ -11,7 +11,6 @@ export default function Products() {
   const [editingProduct, setEditingProduct] = useState(null);
   const [editName, setEditName] = useState('');
   const [editDescription, setEditDescription] = useState('');
-  const [editPrice, setEditPrice] = useState('');
   const [editImageFile, setEditImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -49,7 +48,6 @@ export default function Products() {
     setEditingProduct(product._id);
     setEditName(product.name);
     setEditDescription(product.description);
-    setEditPrice(product.price.toString());
     setEditImageFile(null);
   };
 
@@ -57,13 +55,12 @@ export default function Products() {
     setEditingProduct(null);
     setEditName('');
     setEditDescription('');
-    setEditPrice('');
     setEditImageFile(null);
   };
 
   const updateProduct = async (e) => {
     e.preventDefault();
-    if (!editName || !editDescription || !editPrice) {
+    if (!editName || !editDescription) {
       alert('Tüm alanları doldurun');
       return;
     }
@@ -83,8 +80,7 @@ export default function Products() {
       await axios.put(`${API_ENDPOINTS.PRODUCTS}/${editingProduct}`, {
         name: editName,
         description: editDescription,
-        imageUrl,
-        price: Number(editPrice)
+        imageUrl
       }, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
@@ -196,19 +192,6 @@ export default function Products() {
                     required
                   />
                   <input
-                    type="number"
-                    value={editPrice}
-                    onChange={(e) => setEditPrice(e.target.value)}
-                    placeholder="Fiyat"
-                    style={{
-                      padding: '12px',
-                      border: '1px solid #ddd',
-                      borderRadius: '8px',
-                      fontSize: '16px',
-                    }}
-                    required
-                  />
-                  <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => setEditImageFile(e.target.files[0])}
@@ -286,14 +269,6 @@ export default function Products() {
                   }}>
                     {product.description}
                   </p>
-                  <div style={{ 
-                    fontSize: '24px', 
-                    fontWeight: '700', 
-                    color: '#f39c12', 
-                    marginBottom: '20px' 
-                  }}>
-                    {product.price} ₺
-                  </div>
                   <div style={{ display: 'flex', gap: '12px' }}>
                     <button 
                       onClick={() => startEditProduct(product)}

@@ -1,30 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: '',
-    message: ''
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Form gönderme işlemi burada yapılacak
-    console.log('Form data:', formData);
-    alert('Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.');
-    setFormData({ name: '', email: '', phone: '', company: '', service: '', message: '' });
-  };
 
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', background: 'var(--steel-light)', minHeight: '100vh', color: 'var(--chrome-primary)' }}>
@@ -107,7 +84,7 @@ export default function Contact() {
               <div style={{ fontSize: 48, marginBottom: 20 }}>📍</div>
               <h3 style={{ fontSize: 22, fontWeight: 600, marginBottom: 15, color: 'var(--chrome-primary)' }}>Adres</h3>
               <p style={{ fontSize: 16, color: 'var(--steel-dark)', lineHeight: 1.5 }}>
-                İzmir, Türkiye<br />
+                722/5 Sk No:2, Buca, İzmir<br />
                 Makine Yedek Parça & Kalıp Üretim Tesisi
               </p>
             </div>
@@ -154,174 +131,55 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* İletişim Formu */}
+      {/* Harita Bölümü */}
       <section style={{ padding: '80px 32px', background: 'var(--steel-gradient)', color: 'var(--chrome-primary)' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 36, fontWeight: 700, textAlign: 'center', marginBottom: 60, color: 'var(--chrome-primary)' }}>Teklif ve Bilgi Talebi</h2>
-          <form onSubmit={handleSubmit} style={{ 
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <h2 style={{ fontSize: 36, fontWeight: 700, textAlign: 'center', marginBottom: 60, color: 'var(--chrome-primary)' }}>Konumumuz</h2>
+          <div style={{ 
             background: 'var(--steel-light)', 
-            padding: '40px', 
+            padding: '20px', 
             borderRadius: 12, 
             boxShadow: 'var(--shadow-steel)',
-            border: '2px solid var(--steel-medium)'
+            border: '2px solid var(--steel-medium)',
+            marginBottom: '40px'
           }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: 20 }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>Ad Soyad *</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '2px solid var(--steel-medium)',
-                    borderRadius: 6,
-                    fontSize: 16,
-                    boxSizing: 'border-box',
-                    background: '#fff',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>E-posta *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '2px solid var(--steel-medium)',
-                    borderRadius: 6,
-                    fontSize: 16,
-                    boxSizing: 'border-box',
-                    background: '#fff',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              </div>
+            <h3 style={{ fontSize: 24, fontWeight: 600, marginBottom: 20, color: 'var(--chrome-primary)', textAlign: 'center' }}>
+              📍 722/5 Sk No:2, Buca, İzmir
+            </h3>
+            <div style={{ 
+              width: '100%', 
+              height: '400px', 
+              borderRadius: '8px',
+              overflow: 'hidden',
+              border: '2px solid var(--steel-medium)'
+            }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.123456789!2d27.123456!3d38.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDA3JzI0LjQiTiAyN8KwMDcnMjQuNCJF!5e0!3m2!1str!2str!4v1234567890123!5m2!1str!2str"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="İZMAK Konumu - 722/5 Sk No:2, Buca, İzmir"
+              ></iframe>
             </div>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: 20 }}>
-              <div>
-                <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>Telefon</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '2px solid var(--steel-medium)',
-                    borderRadius: 6,
-                    fontSize: 16,
-                    boxSizing: 'border-box',
-                    background: '#fff',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              </div>
-              <div>
-                <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>Firma Adı</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '2px solid var(--steel-medium)',
-                    borderRadius: 6,
-                    fontSize: 16,
-                    boxSizing: 'border-box',
-                    background: '#fff',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              </div>
+            <div style={{ 
+              marginTop: '20px', 
+              textAlign: 'center',
+              padding: '20px',
+              background: 'var(--steel-gradient)',
+              borderRadius: '8px',
+              border: '1px solid var(--steel-medium)'
+            }}>
+              <p style={{ fontSize: 16, color: 'var(--steel-dark)', marginBottom: '10px' }}>
+                <strong>İZMAK Makine Yedek Parça & Kalıp İmalatı</strong>
+              </p>
+              <p style={{ fontSize: 14, color: 'var(--steel-dark)', lineHeight: '1.6' }}>
+                Buca, İzmir'deki tesisimizde makine yedek parça üretimi ve kalıp imalatı hizmetleri sunmaktayız.
+              </p>
             </div>
-
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>Hizmet Türü</label>
-              <select
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '2px solid var(--steel-medium)',
-                  borderRadius: 6,
-                  fontSize: 16,
-                  boxSizing: 'border-box',
-                  background: '#fff',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <option value="">Hizmet seçiniz</option>
-                <option value="makine-yedek-parca">Makine Yedek Parça İmalatı</option>
-                <option value="plastik-enjeksiyon">Plastik Enjeksiyon Kalıpları</option>
-                <option value="kesme-sivama">Kesme Sıvama Kalıpları</option>
-                <option value="universal-torna">Üniversal Torna İşleri</option>
-                <option value="cnc-islene">CNC İşleme Merkezi</option>
-                <option value="cad-cam">CAD/CAM Hizmetleri</option>
-                <option value="diger">Diğer</option>
-              </select>
-            </div>
-            
-            <div style={{ marginBottom: 30 }}>
-              <label style={{ display: 'block', marginBottom: 8, fontWeight: 600, color: 'var(--chrome-primary)' }}>Proje Detayları *</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows="6"
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '2px solid var(--steel-medium)',
-                  borderRadius: 6,
-                  fontSize: 16,
-                  boxSizing: 'border-box',
-                  resize: 'vertical',
-                  background: '#fff',
-                  transition: 'all 0.3s ease'
-                }}
-                placeholder="Projeniz hakkında detayları, parça özellikleri, miktar, teslimat süresi gibi bilgileri buraya yazabilirsiniz..."
-              />
-            </div>
-            
-            <div style={{ textAlign: 'center' }}>
-              <button
-                type="submit"
-                style={{
-                  background: 'var(--gold-gradient)',
-                  color: 'var(--chrome-primary)',
-                  border: '2px solid var(--gold-accent)',
-                  padding: '16px 40px',
-                  fontSize: 18,
-                  fontWeight: 600,
-                  borderRadius: 8,
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: 'var(--shadow-steel)'
-                }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-              >
-                Teklif Talep Et
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
 

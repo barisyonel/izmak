@@ -23,13 +23,7 @@ npm install
 npm start
 ```
 
-### 3. MongoDB
-- Localde MongoDB çalıştırın veya bir MongoDB Atlas bağlantı adresi kullanın.
-- Bağlantı adresini `backend/.env` dosyasına yazın:
-  ```env
-  MONGODB_URI=mongodb+srv://takasan97:gandalf60@deneme.b7t9xjp.mongodb.net/?retryWrites=true&w=majority&appName=deneme
-  PORT=5001
-  ```
+
 
 ## Kullanım
 - Frontend: [http://localhost:3000](http://localhost:3000)

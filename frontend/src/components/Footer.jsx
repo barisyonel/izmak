@@ -15,7 +15,7 @@ export default function Footer() {
             müşteri memnuniyetini ön planda tutan güvenilir iş ortağınız.
           </p>
           <nav className="social-links" aria-label="Sosyal Medya">
-            <a href="https://instagram.com/izmak" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/izmirmakinakalip?igsh=cGcxYmZzb2JyZDU=" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
           </nav>

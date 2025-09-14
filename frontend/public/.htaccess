@@ -43,10 +43,8 @@ RewriteRule . /index.html [L]
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
     # Additional Security Headers
-    Header always set X-Content-Type-Options "nosniff"
     Header always set X-Download-Options "noopen"
     Header always set X-Permitted-Cross-Domain-Policies "none"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
     
     # Remove Server Information

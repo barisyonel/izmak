@@ -92,7 +92,7 @@ export default function Home() {
           wordWrap: 'break-word',
           overflowWrap: 'break-word'
         }}>
-          Makine Yedek Parça & Kalıp İmalatında Uzmanlık
+          IZMAK - Makine Yedek Parça & Kalıp İmalatında Uzmanlık
         </h1>
         <p style={{ 
           color: 'var(--chrome-secondary)', 
@@ -109,13 +109,25 @@ export default function Home() {
         <p style={{ 
           color: 'var(--steel-dark)', 
           fontSize: 'clamp(14px, 3vw, 18px)', 
-          marginBottom: 32, 
+          marginBottom: 16, 
           textAlign: 'center', 
           maxWidth: 'clamp(280px, 70vw, 600px)',
           wordWrap: 'break-word',
           overflowWrap: 'break-word'
         }}>
           Modern CNC parkurumuz, CAD/CAM teknolojilerimiz ve deneyimli kadromuzla, endüstriyel projelerinize değer katıyor.
+        </p>
+        <p style={{ 
+          color: 'var(--steel-dark)', 
+          fontSize: 'clamp(13px, 2.5vw, 16px)', 
+          marginBottom: 32, 
+          textAlign: 'center', 
+          maxWidth: 'clamp(280px, 70vw, 600px)',
+          wordWrap: 'break-word',
+          overflowWrap: 'break-word',
+          lineHeight: 1.6
+        }}>
+          1960 yılından bu yana sürekli gelişen teknolojimiz ve 60 yıllık deneyimimizle, müşterilerimize en kaliteli hizmeti sunmaya devam ediyoruz. Buca, İzmir'deki tesisimizde, endüstriyel makinelerin yedek parçalarından plastik enjeksiyon kalıplarına, kesme sıvama kalıplarından CNC işleme merkezi hizmetlerine kadar geniş bir yelpazede hizmet veriyoruz.
         </p>
         <Link to="/contact" style={{ 
           background: 'linear-gradient(90deg, #f1c40f 0%, #f39c12 100%)', 

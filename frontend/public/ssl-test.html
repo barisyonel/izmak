@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Test - IZMAK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔒 SSL Sertifika Test Sayfası</h1>
+        <p>Bu sayfa IZMAK web sitesinin SSL güvenlik durumunu test etmek için oluşturulmuştur.</p>
+        
+        <div id="ssl-status" class="status info">
+            SSL durumu kontrol ediliyor...
+        </div>
+        
+        <div id="protocol-status" class="status info">
+            Protokol kontrol ediliyor...
+        </div>
+        
+        <div id="certificate-status" class="status info">
+            Sertifika bilgileri yükleniyor...
+        </div>
+        
+        <h2>Test Sonuçları:</h2>
+        <ul id="test-results">
+            <li>Sayfa yükleme durumu: <span id="page-load">Kontrol ediliyor...</span></li>
+            <li>HTTPS protokolü: <span id="https-check">Kontrol ediliyor...</span></li>
+            <li>Güvenli bağlantı: <span id="secure-connection">Kontrol ediliyor...</span></li>
+            <li>Mixed content: <span id="mixed-content">Kontrol ediliyor...</span></li>
+        </ul>
+        
+        <h2>Öneriler:</h2>
+        <ul>
+            <li>Eğer "Güvenli değil" uyarısı alıyorsanız, tarayıcınızı yenileyin</li>
+            <li>Cache'i temizleyin (Ctrl+F5 veya Cmd+Shift+R)</li>
+            <li>Farklı bir tarayıcı deneyin</li>
+            <li>VPN kullanıyorsanız kapatın</li>
+        </ul>
+        
+        <p><strong>Test Tarihi:</strong> <span id="test-date"></span></p>
+    </div>
+
+    <script>
+        // Test tarihini ekle
+        document.getElementById('test-date').textContent = new Date().toLocaleString('tr-TR');
+        
+        // SSL durumunu kontrol et
+        function checkSSL() {
+            const sslStatus = document.getElementById('ssl-status');
+            const protocolStatus = document.getElementById('protocol-status');
+            const certificateStatus = document.getElementById('certificate-status');
+            const pageLoad = document.getElementById('page-load');
+            const httpsCheck = document.getElementById('https-check');
+            const secureConnection = document.getElementById('secure-connection');
+            const mixedContent = document.getElementById('mixed-content');
+            
+            // Sayfa yükleme durumu
+            if (document.readyState === 'complete') {
+                pageLoad.innerHTML = '<span style="color: green;">✓ Başarılı</span>';
+            } else {
+                pageLoad.innerHTML = '<span style="color: orange;">⚠ Yükleniyor</span>';
+            }
+            
+            // HTTPS kontrolü
+            if (location.protocol === 'https:') {
+                httpsCheck.innerHTML = '<span style="color: green;">✓ HTTPS Aktif</span>';
+                protocolStatus.className = 'status success';
+                protocolStatus.textContent = '✓ HTTPS protokolü aktif';
+            } else {
+                httpsCheck.innerHTML = '<span style="color: red;">✗ HTTP (Güvenli değil)</span>';
+                protocolStatus.className = 'status error';
+                protocolStatus.textContent = '✗ HTTP protokolü kullanılıyor - HTTPS\'e yönlendirilmeli';
+            }
+            
+            // Güvenli bağlantı kontrolü
+            if (location.protocol === 'https:' && !location.hostname.includes('localhost')) {
+                secureConnection.innerHTML = '<span style="color: green;">✓ Güvenli</span>';
+                sslStatus.className = 'status success';
+                sslStatus.textContent = '✓ SSL sertifikası aktif ve güvenli';
+            } else {
+                secureConnection.innerHTML = '<span style="color: red;">✗ Güvenli değil</span>';
+                sslStatus.className = 'status error';
+                sslStatus.textContent = '✗ SSL sertifikası bulunamadı veya geçersiz';
+            }
+            
+            // Mixed content kontrolü
+            const images = document.querySelectorAll('img');
+            const scripts = document.querySelectorAll('script');
+            let hasMixedContent = false;
+            
+            images.forEach(img => {
+                if (img.src && img.src.startsWith('http:')) {
+                    hasMixedContent = true;
+                }
+            });
+            
+            scripts.forEach(script => {
+                if (script.src && script.src.startsWith('http:')) {
+                    hasMixedContent = true;
+                }
+            });
+            
+            if (hasMixedContent) {
+                mixedContent.innerHTML = '<span style="color: red;">✗ Mixed content bulundu</span>';
+            } else {
+                mixedContent.innerHTML = '<span style="color: green;">✓ Temiz</span>';
+            }
+            
+            // Sertifika bilgileri
+            if (location.protocol === 'https:') {
+                certificateStatus.className = 'status success';
+                certificateStatus.textContent = '✓ SSL sertifikası geçerli ve güvenli';
+            } else {
+                certificateStatus.className = 'status error';
+                certificateStatus.textContent = '✗ SSL sertifikası bulunamadı';
+            }
+        }
+        
+        // Sayfa yüklendiğinde testi çalıştır
+        window.addEventListener('load', checkSSL);
+        
+        // 2 saniye sonra tekrar kontrol et
+        setTimeout(checkSSL, 2000);
+    </script>
+</body>
+</html>

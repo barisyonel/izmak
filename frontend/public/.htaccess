@@ -118,11 +118,13 @@ AddDefaultCharset UTF-8
     AddType image/svg+xml .svg
     AddType application/json .json
     AddType application/manifest+json .webmanifest
+    AddType application/xml .xml
+    AddType text/xml .xml
 </IfModule>
 
 # API Proxy (if needed)
 # RewriteRule ^api/(.*)$ https://izmak-production.up.railway.app/api/$1 [P,L]
 
-# Sitemap and Robots
-RewriteRule ^sitemap\.xml$ /sitemap.xml [L]
-RewriteRule ^robots\.txt$ /robots.txt [L]
+# Sitemap and Robots - Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(sitemap\.xml|robots\.txt)$ - [L]

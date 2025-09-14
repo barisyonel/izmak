@@ -10,6 +10,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Gallery from './components/Gallery';
 import Drawings from './components/Drawings';
+import Blog from './components/Blog';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import AdminPanel from './components/admin/AdminPanel';
 import Login from './Login';
 import ProductDetail from './components/ProductDetail';
@@ -41,6 +43,8 @@ function AppContent() {
           <Route path="/drawings" element={<Drawings />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>} />
         </Routes>

@@ -7,7 +7,7 @@
   <!-- Ana Sayfa -->
   <url>
     <loc>https://izmirmakinakalip.com/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,7 +15,7 @@
   <!-- Hizmetlerimiz -->
   <url>
     <loc>https://izmirmakinakalip.com/services</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -23,7 +23,7 @@
   <!-- Ürünlerimiz -->
   <url>
     <loc>https://izmirmakinakalip.com/products</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Galeri -->
   <url>
     <loc>https://izmirmakinakalip.com/gallery</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -39,7 +39,7 @@
   <!-- Proje Çizimleri -->
   <url>
     <loc>https://izmirmakinakalip.com/drawings</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -47,7 +47,7 @@
   <!-- Hakkımızda -->
   <url>
     <loc>https://izmirmakinakalip.com/about</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -55,9 +55,25 @@
   <!-- İletişim -->
   <url>
     <loc>https://izmirmakinakalip.com/contact</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog -->
+  <url>
+    <loc>https://izmirmakinakalip.com/blog</loc>
+    <lastmod>2024-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Gizlilik Politikası -->
+  <url>
+    <loc>https://izmirmakinakalip.com/privacy-policy</loc>
+    <lastmod>2024-09-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   
 </urlset>

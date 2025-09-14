@@ -28,9 +28,9 @@ export default function Navbar() {
         alignItems: 'center', 
         justifyContent: 'space-between',
         height: '100%', 
-        padding: '0 clamp(16px, 3vw, 32px)',
-        flexWrap: 'wrap',
-        gap: '16px'
+        padding: '0 clamp(2%, 3vw, 4%)',
+        flexWrap: 'nowrap',
+        gap: '1%'
       }}>
         {/* Sol: Logo */}
         <div style={{ 
@@ -47,8 +47,8 @@ export default function Navbar() {
             style={{ 
               width: 'clamp(120px, 20vw, 200px)', 
               height: 'auto', 
-              minHeight: 40, 
-              maxHeight: 75, 
+              minHeight: 50, 
+              maxHeight: 90, 
               display: 'block', 
               objectFit: 'contain' 
             }} 
@@ -58,15 +58,16 @@ export default function Navbar() {
         {/* Orta: Menü - Desktop */}
         <div className="navbar-links" style={{ 
           display: 'flex', 
-          gap: 'clamp(20px, 3vw, 36px)', 
+          gap: 'clamp(1.5%, 2vw, 3%)', 
           alignItems: 'center', 
           position: 'absolute', 
           left: '50%', 
           transform: 'translateX(-50%)', 
           top: 0, 
           height: '100%',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
+          flexWrap: 'nowrap',
+          justifyContent: 'center',
+          maxWidth: '70%'
         }}>
           <NavLink 
             to="/" 
@@ -75,8 +76,8 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
@@ -90,8 +91,8 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
@@ -114,8 +115,8 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
@@ -129,8 +130,8 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
@@ -144,13 +145,28 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
           >
             Hakkımızda
+          </NavLink>
+          <NavLink 
+            to="/blog" 
+            onClick={closeMenu} 
+            style={({ isActive }) => ({ 
+              color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
+              textDecoration: 'none', 
+              fontWeight: 700, 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
+            })}
+          >
+            Blog
           </NavLink>
           <NavLink 
             to="/contact" 
@@ -159,8 +175,8 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontWeight: 700, 
-              fontSize: 'clamp(14px, 2vw, 18px)', 
-              padding: '8px 0', 
+              fontSize: 'clamp(12px, 1.5vw, 16px)', 
+              padding: '1% 0', 
               transition: 'all 0.2s',
               whiteSpace: 'nowrap'
             })}
@@ -203,8 +219,8 @@ export default function Navbar() {
           boxShadow: '0 2px 8px #f1c40f22', 
           display: 'flex', 
           flexDirection: 'column', 
-          gap: 'clamp(12px, 3vw, 18px)', 
-          padding: 'clamp(16px, 4vw, 24px)', 
+          gap: 'clamp(1.5%, 3vw, 2.5%)', 
+          padding: 'clamp(2%, 4vw, 3%)', 
           zIndex: 1000,
           borderTop: '2px solid var(--gold-accent)',
           animation: 'slideDown 0.3s ease-out'
@@ -217,7 +233,7 @@ export default function Navbar() {
               textDecoration: 'none', 
               fontWeight: 'bold', 
               fontSize: 'clamp(16px, 4vw, 20px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
@@ -230,7 +246,7 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontSize: 'clamp(15px, 3.5vw, 19px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
@@ -243,7 +259,7 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontSize: 'clamp(15px, 3.5vw, 19px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
@@ -256,7 +272,7 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontSize: 'clamp(15px, 3.5vw, 19px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
@@ -269,11 +285,24 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontSize: 'clamp(15px, 3.5vw, 19px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
             Hakkımızda
+          </NavLink>
+          <NavLink 
+            to="/blog" 
+            onClick={closeMenu} 
+            style={({ isActive }) => ({ 
+              color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
+              textDecoration: 'none', 
+              fontSize: 'clamp(15px, 3.5vw, 19px)',
+              padding: '1.5% 0',
+              borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
+            })}
+          >
+            Blog
           </NavLink>
           <NavLink 
             to="/contact" 
@@ -282,7 +311,7 @@ export default function Navbar() {
               color: isActive ? 'var(--gold-accent)' : 'var(--chrome-primary)', 
               textDecoration: 'none', 
               fontSize: 'clamp(15px, 3.5vw, 19px)',
-              padding: '12px 0',
+              padding: '1.5% 0',
               borderBottom: '1px solid rgba(243, 156, 18, 0.2)'
             })}
           >
@@ -308,7 +337,7 @@ export default function Navbar() {
           }
         }
         
-        @media (max-width: 900px) {
+        @media (max-width: 1200px) {
           .navbar-links { 
             display: none !important; 
           }
@@ -327,7 +356,7 @@ export default function Navbar() {
           }
         }
         
-        @media (min-width: 901px) {
+        @media (min-width: 1201px) {
           .navbar-mobile-menu { 
             display: none !important; 
           }
@@ -348,19 +377,19 @@ export default function Navbar() {
         
         @media (max-width: 600px) {
           .main-navbar > div {
-            padding: 0 12px !important;
+            padding: 0 1.5% !important;
           }
           .navbar-mobile-menu {
-            padding: 16px 12px !important;
+            padding: 2% 1.5% !important;
           }
         }
         
         @media (max-width: 480px) {
           .main-navbar > div {
-            padding: 0 8px !important;
+            padding: 0 1% !important;
           }
           .navbar-mobile-menu {
-            padding: 12px 8px !important;
+            padding: 1.5% 1% !important;
           }
         }
       `}</style>

@@ -5,8 +5,20 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -55,7 +67,7 @@ module.exports = {
     proxy: [
       {
         context: ['/api'],
-        target: 'https://izmak-production.up.railway.app',
+        target: 'https://izmirmakinakalip.com',
         changeOrigin: true,
         secure: true
       }

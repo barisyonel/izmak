@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import kalip1 from '../kalip1.jpg';
+import kalip2 from '../kalip2.jpg';
+import kalip3 from '../kalip3.jpg';
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
@@ -42,15 +45,15 @@ export default function Home() {
         <meta property="og:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı | İzmir" />
         <meta property="og:description" content="1960'tan beri makine yedek parça imalatı, kalıp üretimi ve CNC işleme sektöründe uzmanlaşmış IZMAK. Buca, İzmir'de hizmet veriyoruz." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://izmak.com" />
-        <meta property="og:image" content="https://izmak.com/logo.png" />
+        <meta property="og:url" content="https://izmirmakinakalip.com" />
+        <meta property="og:image" content="https://izmirmakinakalip.com/logo.png" />
         <meta property="og:site_name" content="IZMAK" />
         <meta property="og:locale" content="tr_TR" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="IZMAK - Makine Yedek Parça & Kalıp İmalatı | İzmir" />
         <meta name="twitter:description" content="1960'tan beri makine yedek parça imalatı, kalıp üretimi ve CNC işleme sektöründe uzmanlaşmış IZMAK" />
-        <meta name="twitter:image" content="https://izmak.com/logo.png" />
-        <link rel="canonical" href="https://izmak.com" />
+        <meta name="twitter:image" content="https://izmirmakinakalip.com/logo.png" />
+        <link rel="canonical" href="https://izmirmakinakalip.com" />
       </Helmet>
       {/* HERO Alanı */}
       <section style={{
@@ -210,7 +213,28 @@ export default function Home() {
               transition: 'all 0.3s ease',
               overflow: 'hidden'
             }}>
-              <div style={{ fontSize: 'clamp(36px, 8vw, 48px)', marginBottom: 20, textAlign: 'center' }}>🏭</div>
+              <div style={{ 
+                width: '100%', 
+                height: '120px', 
+                borderRadius: '8px',
+                marginBottom: '20px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <img 
+                  src={kalip1} 
+                  alt="Plastik Enjeksiyon Kalıbı"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
+                />
+              </div>
               <h3 style={{ 
                 fontSize: 'clamp(18px, 4vw, 24px)', 
                 fontWeight: 600, 
@@ -244,7 +268,28 @@ export default function Home() {
               transition: 'all 0.3s ease',
               overflow: 'hidden'
             }}>
-              <div style={{ fontSize: 'clamp(36px, 8vw, 48px)', marginBottom: 20, textAlign: 'center' }}>✂️</div>
+              <div style={{ 
+                width: '100%', 
+                height: '120px', 
+                borderRadius: '8px',
+                marginBottom: '20px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <img 
+                  src={kalip2} 
+                  alt="Kesme Sıvama Kalıbı"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
+                />
+              </div>
               <h3 style={{ 
                 fontSize: 'clamp(18px, 4vw, 24px)', 
                 fontWeight: 600, 
@@ -312,7 +357,28 @@ export default function Home() {
               transition: 'all 0.3s ease',
               overflow: 'hidden'
             }}>
-              <div style={{ fontSize: 'clamp(36px, 8vw, 48px)', marginBottom: 20, textAlign: 'center' }}>🖥️</div>
+              <div style={{ 
+                width: '100%', 
+                height: '120px', 
+                borderRadius: '8px',
+                marginBottom: '20px',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <img 
+                  src={kalip3} 
+                  alt="CNC İşleme Merkezi"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
+                />
+              </div>
               <h3 style={{ 
                 fontSize: 'clamp(18px, 4vw, 24px)', 
                 fontWeight: 600, 
